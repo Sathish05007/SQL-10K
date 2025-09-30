@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Day 2 Notes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0b1020;
+      color: #e7ecff;
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    }
+
+    .wrap {
+      width: 60%;
+      margin: auto;
+      padding: 28px;
+    }
+
+    header {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: #20294a;
+      border: 1px solid #2a3563;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #a5b0d8;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 4px 0 2px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 24px 0 10px;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin: 14px 0 8px;
+      color: #6ea8ff;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      grid-column: span 12;
+      background: #121832;
+      border: 1px solid #2a3563;
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    ul,
+    ol {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      border: 1px solid #2a3563;
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid #2a3563;
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    .table th {
+      background: #182045;
+      text-align: left;
+    }
+
+    pre {
+      background: #0f142b;
+      border: 1px solid #2a3563;
+      padding: 14px;
+      border-radius: 12px;
+      overflow: auto;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>📘 SQL Day 2 Notes</h1>
+      <span class="badge">Databases</span>
+      <span class="badge">Tables</span>
+      <span class="badge">CRUD</span>
+      <span class="badge">Data Types</span>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>1. Creating My First Database</h2>
+        <pre>
+-- Create a database
+CREATE DATABASE College;
+
+-- Use the database
+USE College;
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>2. Creating Tables</h2>
+        <pre>
+-- Create a table
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    course VARCHAR(50)
+);
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>3. Inserting Data</h2>
+        <pre>
+-- Insert single row
+INSERT INTO Students (student_id, name, age, course)
+VALUES (1, 'Anita', 21, 'Computer Science');
+
+-- Insert multiple rows
+INSERT INTO Students (student_id, name, age, course)
+VALUES
+(2, 'Ravi', 20, 'Mathematics'),
+(3, 'Sita', 22, 'Physics');
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>4. Introduction to SQL Commands</h2>
+        <ul>
+          <li><b>DDL (Data Definition Language):</b> CREATE, DROP, ALTER</li>
+          <li><b>DML (Data Manipulation Language):</b> INSERT, UPDATE, DELETE</li>
+          <li><b>DQL (Data Query Language):</b> SELECT</li>
+          <li><b>DCL (Data Control Language):</b> GRANT, REVOKE</li>
+          <li><b>TCL (Transaction Control Language):</b> COMMIT, ROLLBACK</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5. SQL Data Types</h2>
+        <table class="table">
+          <tr>
+            <th>Category</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td>Numeric</td>
+            <td>INT, FLOAT, DECIMAL</td>
+          </tr>
+          <tr>
+            <td>String</td>
+            <td>CHAR, VARCHAR, TEXT</td>
+          </tr>
+          <tr>
+            <td>Date/Time</td>
+            <td>DATE, TIME, DATETIME, TIMESTAMP</td>
+          </tr>
+          <tr>
+            <td>Boolean</td>
+            <td>BOOLEAN (true/false)</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>6. Table Modifications (ALTER)</h2>
+        <pre>
+-- Add a new column
+ALTER TABLE Students ADD email VARCHAR(100);
+
+-- Modify datatype
+ALTER TABLE Students MODIFY age SMALLINT;
+
+-- Rename a column
+ALTER TABLE Students CHANGE course department VARCHAR(50);
+
+-- Delete a column
+ALTER TABLE Students DROP email;
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>7. Updating & Deleting Data</h2>
+        <pre>
+-- Update data
+UPDATE Students
+SET age = 23
+WHERE student_id = 2;
+
+-- Delete a row
+DELETE FROM Students
+WHERE student_id = 3;
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>8. Creating & Deleting Databases</h2>
+        <pre>
+-- Create new database
+CREATE DATABASE Library;
+
+-- Delete database
+DROP DATABASE Library;
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>9. Creating & Deleting Tables</h2>
+        <pre>
+-- Create table
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(50)
+);
+
+-- Delete table
+DROP TABLE Courses;
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>📝 Day 2 Practice Task</h2>
+        <ol>
+          <li>Create a database <b>Company</b>.</li>
+          <li>Create a table <b>Employees</b> with columns: emp_id, name, salary, department.</li>
+          <li>Insert 3 rows into Employees.</li>
+          <li>Update the salary of one employee.</li>
+          <li>Add a new column <b>email</b>.</li>
+          <li>Change the datatype of salary to DECIMAL(10,2).</li>
+          <li>Delete one row.</li>
+          <li>Create another table <b>Departments</b>, then delete it.</li>
+          <li>Delete the entire <b>Company</b> database.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

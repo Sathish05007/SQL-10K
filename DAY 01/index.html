@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Day 1 Notes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: #e7ecff;
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    }
+
+    .wrap {
+      width: 60%;
+      margin: auto;
+      padding: 28px;
+    }
+
+    header {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: #20294a;
+      border: 1px solid #2a3563;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #a5b0d8;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 4px 0 2px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 24px 0 10px;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin: 14px 0 8px;
+      color: #6ea8ff;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      grid-column: span 12;
+      background: #121832;
+      border: 1px solid #2a3563;
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    ul,
+    ol {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      border: 1px solid #2a3563;
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid #2a3563;
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    .table th {
+      background: #182045;
+      text-align: left;
+    }
+
+    .chip {
+      display: inline-block;
+      background: #20294a;
+      border: 1px solid #2a3563;
+      border-radius: 8px;
+      padding: 2px 8px;
+      margin: 2px 6px 2px 0;
+      font-size: 12px;
+      color: #a5b0d8;
+    }
+
+    pre {
+      background: #0f142b;
+      border: 1px solid #2a3563;
+      padding: 14px;
+      border-radius: 12px;
+      overflow: auto;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    button {
+      background: #2d89ef;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1b5cb8;
+    }
+
+    #output {
+      margin-top: 14px;
+      font-size: 16px;
+      color: #5bd39a;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>SQL Notes</h1>
+      <span class="badge">Introduction</span>
+      <span class="badge">Setup</span>
+      <span class="badge">Practice</span>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>1. SQL Introduction</h2>
+        <p>SQL (Structured Query Language) is used to communicate with relational databases. 
+        It helps in storing, retrieving, updating, and deleting data. SQL is standardized but implementations differ slightly across MySQL, PostgreSQL, Oracle, etc.</p>
+      </div>
+
+      <div class="card">
+        <h2>2. Why Use Databases?</h2>
+        <ul>
+          <li>Store large amounts of data systematically</li>
+          <li>Provide data security & integrity</li>
+          <li>Support multi-user access</li>
+          <li>Easy querying and analysis</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>3. Difference Between SQL & MongoDB</h2>
+        <table class="table">
+          <tr>
+            <th>Feature</th>
+            <th>SQL (Relational DB)</th>
+            <th>MongoDB (NoSQL DB)</th>
+          </tr>
+          <tr>
+            <td>Data Model</td>
+            <td>Tables (rows & columns)</td>
+            <td>Documents (JSON-like)</td>
+          </tr>
+          <tr>
+            <td>Schema</td>
+            <td>Fixed schema</td>
+            <td>Schema-less</td>
+          </tr>
+          <tr>
+            <td>Relationships</td>
+            <td>Supports JOINs</td>
+            <td>Embedding/Nesting</td>
+          </tr>
+          <tr>
+            <td>Best For</td>
+            <td>Structured data</td>
+            <td>Unstructured / flexible data</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>MySQL, PostgreSQL, Oracle</td>
+            <td>MongoDB</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>4. Advantages of SQL</h2>
+        <ul>
+          <li>Simple & standardized language</li>
+          <li>Efficient for structured data</li>
+          <li>Powerful queries (JOINs, filtering, aggregation)</li>
+          <li>Security with roles & permissions</li>
+          <li>Scalable and widely used in industry</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5. Basic Example</h2>
+        <pre>
+-- Create a database
+CREATE DATABASE School;
+
+-- Use the database
+USE School;
+
+-- Create a table
+CREATE TABLE Students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    grade VARCHAR(5)
+);
+
+-- Insert data
+INSERT INTO Students (id, name, age, grade)
+VALUES (1, 'Ravi', 20, 'A');
+
+-- Retrieve data
+SELECT * FROM Students;
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>6. SQL Software Installation</h2>
+        <ul>
+          <li><a href="https://dev.mysql.com/downloads/" target="_blank" class="chip">MySQL Community Edition</a></li>
+          <li><a href="https://dev.mysql.com/downloads/workbench/" target="_blank" class="chip">MySQL Workbench</a></li>
+          <li><a href="https://www.postgresql.org/download/" target="_blank" class="chip">PostgreSQL (alternative)</a></li>
+          <li><a href="https://www.w3schools.com/sql/trysql.asp" target="_blank" class="chip">Practice SQL Online</a></li>
+          <li><a href="https://leetcode.com/problemset/database/" target="_blank" class="chip">LeetCode Database Problems</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>7. Account Creation in MySQL Workbench</h2>
+        <ol>
+          <li>Install MySQL & Workbench.</li>
+          <li>During setup, set username (<b>default: root</b>) and password.</li>
+          <li>Open Workbench → Create New Connection → Enter details.</li>
+          <li>Test connection → Save.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h2>📝 Day 1 Practice Questions</h2>
+        <ol>
+          <li>What is SQL and why is it important?</li>
+          <li>List 3 differences between SQL and MongoDB.</li>
+          <li>What are the advantages of using SQL databases?</li>
+          <li>Write SQL commands to:
+            <ul>
+              <li>Create a database named <b>Library</b>.</li>
+              <li>Create a table <b>Books</b> with columns: book_id, title, author, year.</li>
+              <li>Insert 2 rows into the table.</li>
+              <li>Select all books.</li>
+            </ul>
+          </li>
+          <li>Install MySQL & Workbench, create a connection, and share your first screenshot of a created database.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
