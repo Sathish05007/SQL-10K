@@ -5,3 +5,5 @@ SQL **(Structured Query Language)** is used to manage and manipulate databases. 
 SQL uses data types like **INT**, **VARCHAR**, **DATE**, etc.,
 CREATE DATABASE and CREATE TABLE commands let you build your database structure. 🏗️ Tables store data in rows and columns.
 INSERT adds new data into a table. You can insert one row at a time or multiple rows together. 
+
+**DAY 3**:-**Operators & Aggregations**
