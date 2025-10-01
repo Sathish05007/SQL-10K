@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Operators & Aggregations</title>
+  <style>
+    /* Basic Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: #0b1020;
+      color: #e7ecff;
+      padding: 20px;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      background: #20294a;
+      border: 1px solid #2a3563;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #a5b0d8;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #6ea8ff;
+      border-bottom: 2px solid #2a3563;
+      padding-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 18px 0 8px;
+      color: #81d4ff;
+    }
+
+    p {
+      margin: 6px 0;
+      line-height: 1.5;
+    }
+
+    .card {
+      background: #121832;
+      border: 1px solid #2a3563;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    pre {
+      background: #0f142b;
+      border: 1px solid #2a3563;
+      padding: 12px 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      color: #a5ffda;
+      margin: 8px 0;
+    }
+
+    .chip {
+      display: inline-block;
+      background: #20294a;
+      border: 1px solid #2a3563;
+      border-radius: 12px;
+      padding: 4px 10px;
+      margin: 4px 6px 4px 0;
+      font-size: 12px;
+      color: #a5b0d8;
+    }
+
+    ul, ol {
+      margin: 8px 0 12px 20px;
+    }
+
+    .assignment {
+      background: #1b2440;
+      border-left: 4px solid #6ea8ff;
+      padding: 6px 12px;
+      margin: 8px 0 16px;
+      border-radius: 8px;
+      font-style: italic;
+      color: #c8d6ff;
+    }
+
+    /* Responsive */
+    @media(max-width:768px) {
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      .wrap {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="badge">SQL Day 3 – Operators & Aggregations</span>
+    </header>
+
+    <!-- Operators -->
+    <div class="card">
+      <h1>SQL Operators</h1>
+
+      <h2>= (Equal)</h2>
+      <pre>SELECT * FROM table WHERE column = value;</pre>
+      <pre>Example: SELECT * FROM students WHERE age = 18;</pre>
+      <div class="assignment">Assignment: Find all employees whose department_id = 2.</div>
+
+      <h2>&lt; (Less Than)</h2>
+      <pre>SELECT * FROM table WHERE column &lt; value;</pre>
+      <pre>Example: SELECT * FROM products WHERE price &lt; 100;</pre>
+      <div class="assignment">Assignment: List all products cheaper than 500.</div>
+
+      <h2>&gt; (Greater Than)</h2>
+      <pre>SELECT * FROM table WHERE column &gt; value;</pre>
+      <pre>Example: SELECT * FROM employees WHERE salary &gt; 50000;</pre>
+      <div class="assignment">Assignment: Show all employees earning more than 60,000.</div>
+
+      <h2>LIKE</h2>
+      <pre>SELECT * FROM table WHERE column LIKE pattern;</pre>
+      <pre>Example: SELECT * FROM students WHERE name LIKE 'A%';</pre>
+      <div class="assignment">Assignment: Find students whose name starts with 'S'.</div>
+
+      <h2>BETWEEN</h2>
+      <pre>SELECT * FROM table WHERE column BETWEEN value1 AND value2;</pre>
+      <pre>Example: SELECT * FROM orders WHERE amount BETWEEN 100 AND 500;</pre>
+      <div class="assignment">Assignment: List all products with price between 200 and 800.</div>
+
+      <h2>IN</h2>
+      <pre>SELECT * FROM table WHERE column IN (value1, value2, ...);</pre>
+      <pre>Example: SELECT * FROM employees WHERE department IN ('HR','IT');</pre>
+      <div class="assignment">Assignment: Find all students in classes 1, 3, and 5.</div>
+    </div>
+
+    <!-- Aggregations -->
+    <div class="card">
+      <h1>SQL Aggregation Functions</h1>
+
+      <h2>COUNT()</h2>
+      <pre>SELECT COUNT(column) FROM table;</pre>
+      <pre>Example: SELECT COUNT(*) FROM students;</pre>
+      <div class="assignment">Assignment: Count how many employees are in the company.</div>
+
+      <h2>SUM()</h2>
+      <pre>SELECT SUM(column) FROM table;</pre>
+      <pre>Example: SELECT SUM(salary) FROM employees;</pre>
+      <div class="assignment">Assignment: Find total sales amount from orders table.</div>
+
+      <h2>AVG()</h2>
+      <pre>SELECT AVG(column) FROM table;</pre>
+      <pre>Example: SELECT AVG(price) FROM products;</pre>
+      <div class="assignment">Assignment: Find the average age of students.</div>
+
+      <h2>MIN()</h2>
+      <pre>SELECT MIN(column) FROM table;</pre>
+      <pre>Example: SELECT MIN(salary) FROM employees;</pre>
+      <div class="assignment">Assignment: Find the lowest product price.</div>
+
+      <h2>MAX()</h2>
+      <pre>SELECT MAX(column) FROM table;</pre>
+      <pre>Example: SELECT MAX(marks) FROM students;</pre>
+      <div class="assignment">Assignment: Find the highest order amount.</div>
+    </div>
+
+    <!-- Practice Questions -->
+    <div class="card">
+      <h1>SQL Day 3 Practice Questions</h1>
+      <h2>Part A: Operators (=, <, >, LIKE, BETWEEN, IN)</h2>
+      <ul>
+        <li>Find all students whose age = 20.</li>
+        <li>Retrieve all products where price &lt; 500.</li>
+        <li>Get all employees with salary &gt; 60000.</li>
+        <li>Find students whose name starts with 'S'.</li>
+        <li>List orders where amount is BETWEEN 1000 and 5000.</li>
+        <li>Show employees whose department is IN ('HR', 'IT', 'Finance').</li>
+        <li>Find customers whose city is NOT IN ('Delhi', 'Mumbai').</li>
+        <li>Select all students whose grade is NOT 'A'.</li>
+        <li>Find employees whose names end with 'a' using LIKE.</li>
+        <li>List all products where name contains 'Book' using LIKE.</li>
+      </ul>
+
+      <h2>Part B: Aggregation Functions (COUNT, SUM, AVG, MIN, MAX)</h2>
+      <ul>
+        <li>Count the total number of students in the students table.</li>
+        <li>Count how many employees work in the 'IT' department.</li>
+        <li>Find the total salary of all employees.</li>
+        <li>Find the total sales amount from the orders table.</li>
+        <li>Calculate the average price of all products.</li>
+        <li>Calculate the average age of students.</li>
+        <li>Find the minimum salary of employees.</li>
+        <li>Find the minimum product price.</li>
+        <li>Find the maximum marks obtained by a student.</li>
+        <li>Find the highest order amount in the orders table.</li>
+      </ul>
+
+      <h2>💡 Extra Challenge (combine operators & aggregation)</h2>
+      <ul>
+        <li>Count the number of students whose age &gt; 18.</li>
+        <li>Find the total salary of employees in department 'HR'.</li>
+        <li>Find the average order amount where amount BETWEEN 500 AND 5000.</li>
+        <li>Count how many products have price &lt; 1000.</li>
+        <li>Find the maximum salary of employees whose department is IN ('IT', 'Finance').</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
