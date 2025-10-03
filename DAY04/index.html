@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Constraints & Clauses</title>
+  <style>
+    /* Basic Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: #0b1020;
+      color: #e7ecff;
+      padding: 20px;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      background: #20294a;
+      border: 1px solid #2a3563;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #a5b0d8;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #6ea8ff;
+      border-bottom: 2px solid #2a3563;
+      padding-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 18px 0 8px;
+      color: #81d4ff;
+    }
+
+    p {
+      margin: 6px 0;
+      line-height: 1.5;
+    }
+
+    .card {
+      background: #121832;
+      border: 1px solid #2a3563;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    pre {
+      background: #0f142b;
+      border: 1px solid #2a3563;
+      padding: 12px 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      color: #a5ffda;
+      margin: 8px 0;
+    }
+
+    .chip {
+      display: inline-block;
+      background: #20294a;
+      border: 1px solid #2a3563;
+      border-radius: 12px;
+      padding: 4px 10px;
+      margin: 4px 6px 4px 0;
+      font-size: 12px;
+      color: #a5b0d8;
+    }
+
+    ul, ol {
+      margin: 8px 0 12px 20px;
+    }
+
+    .assignment {
+      background: #1b2440;
+      border-left: 4px solid #6ea8ff;
+      padding: 6px 12px;
+      margin: 8px 0 16px;
+      border-radius: 8px;
+      font-style: italic;
+      color: #c8d6ff;
+    }
+
+    /* Responsive */
+    @media(max-width:768px) {
+      h1 { font-size: 24px; }
+      h2 { font-size: 20px; }
+      .wrap { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="badge">SQL Day 4 – Constraints, Clauses & Functions</span>
+    </header>
+
+    <!-- Constraints -->
+    <div class="card">
+      <h1>SQL Constraints</h1>
+
+      <h2>Primary Key</h2>
+      <p>Ensures each record in a table is unique and not NULL.</p>
+      <pre>CREATE TABLE students (
+  id INT PRIMARY KEY,
+  name VARCHAR(50)
+);</pre>
+      <div class="assignment">Assignment: Create a "departments" table with dept_id as PRIMARY KEY.</div>
+
+      <h2>Foreign Key</h2>
+      <p>Ensures referential integrity between two tables.</p>
+      <pre>CREATE TABLE orders (
+  order_id INT PRIMARY KEY,
+  customer_id INT,
+  FOREIGN KEY(customer_id) REFERENCES customers(id)
+);</pre>
+      <div class="assignment">Assignment: Create "enrollments" table with student_id as FOREIGN KEY referencing students(id).</div>
+
+      <h2>Unique</h2>
+      <p>Ensures all values in a column are unique.</p>
+      <pre>CREATE TABLE users (
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(50)
+);</pre>
+      <div class="assignment">Assignment: Create "employees" table with phone_number as UNIQUE.</div>
+    </div>
+
+    <!-- Clauses -->
+    <div class="card">
+      <h1>SQL Clauses</h1>
+
+      <h2>ORDER BY</h2>
+      <pre>SELECT * FROM students ORDER BY age DESC;</pre>
+      <div class="assignment">Assignment: List employees ordered by salary (highest first).</div>
+
+      <h2>DISTINCT</h2>
+      <pre>SELECT DISTINCT city FROM customers;</pre>
+      <div class="assignment">Assignment: Find unique course names from courses table.</div>
+
+      <h2>LIMIT (MySQL) / TOP (SQL Server)</h2>
+      <pre>SELECT * FROM products LIMIT 5;  -- MySQL
+SELECT TOP 5 * FROM products;    -- SQL Server</pre>
+      <div class="assignment">Assignment: Show the first 3 students from the students table.</div>
+
+      <h2>GROUP BY + HAVING</h2>
+      <pre>SELECT department, COUNT(*) 
+FROM employees 
+GROUP BY department 
+HAVING COUNT(*) > 5;</pre>
+      <div class="assignment">Assignment: Find departments having more than 10 employees.</div>
+    </div>
+
+    <!-- String Functions -->
+    <div class="card">
+      <h1>SQL String Functions</h1>
+
+      <h2>UPPER()</h2>
+      <pre>SELECT UPPER(name) FROM students;</pre>
+      <div class="assignment">Assignment: Convert all product names to uppercase.</div>
+
+      <h2>LOWER()</h2>
+      <pre>SELECT LOWER(email) FROM users;</pre>
+      <div class="assignment">Assignment: Convert customer names to lowercase.</div>
+
+      <h2>CONCAT()</h2>
+      <pre>SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM employees;</pre>
+      <div class="assignment">Assignment: Show full names of students.</div>
+
+      <h2>SUBSTRING()</h2>
+      <pre>SELECT SUBSTRING(name, 1, 3) FROM students;</pre>
+      <div class="assignment">Assignment: Extract first 4 letters of each product name.</div>
+    </div>
+
+    <!-- Date Functions -->
+    <div class="card">
+      <h1>SQL Date Functions</h1>
+
+      <h2>NOW()</h2>
+      <pre>SELECT NOW();</pre>
+      <div class="assignment">Assignment: Print current system date and time.</div>
+
+      <h2>CURDATE()</h2>
+      <pre>SELECT CURDATE();</pre>
+      <div class="assignment">Assignment: Get only the current date.</div>
+
+      <h2>YEAR(), MONTH(), DAY()</h2>
+      <pre>SELECT YEAR(order_date), MONTH(order_date), DAY(order_date) FROM orders;</pre>
+      <div class="assignment">Assignment: Extract year of joining for each employee.</div>
+
+      <h2>DATEDIFF()</h2>
+      <pre>SELECT DATEDIFF(end_date, start_date) FROM projects;</pre>
+      <div class="assignment">Assignment: Find number of days between order_date and delivery_date.</div>
+    </div>
+
+    <!-- Practice -->
+    <div class="card">
+      <h1>SQL Day 4 Practice Questions</h1>
+      <ul>
+        <li>Create a table with a PRIMARY KEY and FOREIGN KEY.</li>
+        <li>Insert data into employees table and find unique job titles using DISTINCT.</li>
+        <li>List top 3 highest paid employees using ORDER BY and LIMIT.</li>
+        <li>Group students by class and find classes with more than 20 students.</li>
+        <li>Get all customer names in uppercase using UPPER().</li>
+        <li>Extract the year of all orders using YEAR().</li>
+        <li>Find the difference between joining_date and current date using DATEDIFF().</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

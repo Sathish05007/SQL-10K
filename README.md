@@ -7,3 +7,5 @@ CREATE DATABASE and CREATE TABLE commands let you build your database structure.
 INSERT adds new data into a table. You can insert one row at a time or multiple rows together. 
 
 **DAY 3**:-**Operators & Aggregations**
+
+**DAY 4**:-**Constraints & Clauses**
