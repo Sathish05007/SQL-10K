@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Recap Assignment</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: #0b1020;
+      color: #e7ecff;
+      padding: 20px;
+    }
+
+    .wrap { 
+      max-width: 1100px; 
+      margin: auto; 
+      padding: 20px; 
+    }
+
+    header { 
+      margin-bottom: 20px; 
+    }
+
+    .badge {
+      display: inline-block;
+      background: #20294a; 
+      border: 1px solid #2a3563;
+      padding: 6px 12px; 
+      border-radius: 999px;
+      font-size: 14px; 
+      color: #a5b0d8; 
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    h1 { 
+      font-size: 28px; 
+      margin-bottom: 12px; 
+      color: #6ea8ff; 
+      border-bottom: 2px solid #2a3563; 
+      padding-bottom: 6px; 
+    }
+
+    h2 { 
+      font-size: 22px; 
+      margin: 18px 0 8px; 
+      color: #81d4ff; 
+    }
+
+    .card {
+      background: #121832; 
+      border: 1px solid #2a3563;
+      border-radius: 16px; 
+      padding: 24px; 
+      margin: 24px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover { 
+      transform: translateY(-4px); 
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); 
+    }
+
+    pre {
+      background: #0f142b; 
+      border: 1px solid #2a3563;
+      padding: 12px 16px; 
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace; 
+      color: #a5ffda;
+      margin: 8px 0; 
+      white-space: pre-wrap;
+    }
+
+    details {
+      background: #121832; 
+      border: 1px solid #2a3563;
+      border-radius: 12px; 
+      padding: 12px 16px;
+      margin: 12px 0; 
+      cursor: pointer;
+    }
+
+    details summary { 
+      font-size: 18px; 
+      font-weight: 600; 
+      color: #6ea8ff; 
+      margin-bottom: 8px; 
+    }
+
+    details[open] { background: #1b2440; }
+
+    code {
+      background: #0f142b; 
+      padding: 2px 6px;
+      border-radius: 6px; 
+      font-size: 14px; 
+      color: #a5ffda;
+    }
+
+    @media(max-width:768px) {
+      h1 { font-size: 24px; }
+      h2 { font-size: 20px; }
+      .wrap { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h2>⚡ Quick Reference</h2>
+
+      <details open>
+        <summary>📌 Basic SQL Commands</summary>
+        <ul>
+          <li><code>CREATE DATABASE dbname;</code> → Create new database</li>
+          <li><code>CREATE TABLE table_name (...);</code> → Create new table</li>
+          <li><code>INSERT INTO table_name VALUES (...);</code> → Insert new record</li>
+          <li><code>SELECT * FROM table_name;</code> → Retrieve data</li>
+          <li><code>UPDATE table_name SET column=value WHERE condition;</code> → Update record</li>
+          <li><code>DELETE FROM table_name WHERE condition;</code> → Delete record</li>
+          <li><code>DROP TABLE table_name;</code> → Delete table</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>📌 SQL Data Types</summary>
+        <ul>
+          <li><b>Numeric:</b> <code>INT</code>, <code>BIGINT</code>, <code>DECIMAL</code>, <code>FLOAT</code></li>
+          <li><b>String:</b> <code>CHAR(n)</code>, <code>VARCHAR(n)</code>, <code>TEXT</code></li>
+          <li><b>Date/Time:</b> <code>DATE</code>, <code>TIME</code>, <code>DATETIME</code>, <code>TIMESTAMP</code></li>
+          <li><b>Boolean:</b> <code>BOOLEAN</code></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>📌 SQL Operators</summary>
+        <ul>
+          <li><b>Arithmetic:</b> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></li>
+          <li><b>Comparison:</b> <code>=</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
+          <li><b>Logical:</b> <code>AND</code>, <code>OR</code>, <code>NOT</code></li>
+          <li><b>Special:</b> <code>IN</code>, <code>BETWEEN</code>, <code>LIKE</code>, <code>IS NULL</code></li>
+        </ul>
+      </details>
+
+      <span class="badge">📘 Assignment Questions – SQL Basics</span>
+    </header>
+
+    <h1>Recap – SQL Basics</h1>
+
+    <!-- Section 1 -->
+    <div class="card">
+      <h2>🔹 Section 1: Basic SQL Commands</h2>
+      <pre>
+1. Write a SQL command to create a database named "SchoolDB".
+2. Create a table "Students" with columns: StudentID, Name, Age, Grade.
+3. Insert 3 records into the Students table.
+4. Retrieve all student records.
+5. Update a student’s age based on StudentID.
+6. Delete students who have Grade 'C'.
+7. Drop the Students table.
+      </pre>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="card">
+      <h2>🔹 Section 2: SQL Data Types</h2>
+      <pre>
+1. Which data type will you use for storing a phone number?
+2. Which data type is suitable for storing a student’s name?
+3. How will you store a date of birth in SQL?
+4. Which data type should be used for product prices (decimal values)?
+5. Which data type is used to store large text like a paragraph?
+6. Write a query to create a Products table with ProductID, ProductName, Price, and ManufactureDate.
+      </pre>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="card">
+      <h2>🔹 Section 3: SQL Operators</h2>
+      <pre>
+1. Write a query to select students older than 18.
+2. Retrieve students whose grade is either 'A' or 'B'.
+3. Find students whose names start with 'S'.
+4. Select students whose age is between 15 and 20.
+5. Write a query using AND / OR to combine multiple conditions.
+      </pre>
+    </div>
+  </div>
+</body>
+</html>
