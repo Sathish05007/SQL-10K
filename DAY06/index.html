@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Joins</title>
+  <style>
+    /* Basic Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: #0b1020;
+      color: #e7ecff;
+      padding: 20px;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    header { display: flex; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+
+    .badge {
+      background: #20294a;
+      border: 1px solid #2a3563;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #a5b0d8;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #6ea8ff;
+      border-bottom: 2px solid #2a3563;
+      padding-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 18px 0 8px;
+      color: #81d4ff;
+    }
+
+    p { margin: 6px 0; line-height: 1.5; }
+
+    .card {
+      background: #121832;
+      border: 1px solid #2a3563;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); }
+
+    pre {
+      background: #0f142b;
+      border: 1px solid #2a3563;
+      padding: 12px 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      color: #a5ffda;
+      margin: 8px 0;
+    }
+
+    .assignment {
+      background: #1b2440;
+      border-left: 4px solid #6ea8ff;
+      padding: 6px 12px;
+      margin: 8px 0 16px;
+      border-radius: 8px;
+      font-style: italic;
+      color: #c8d6ff;
+    }
+
+    ul { margin: 8px 0 12px 20px; }
+
+    @media(max-width:768px) {
+      h1 { font-size: 24px; }
+      h2 { font-size: 20px; }
+      .wrap { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="badge">SQL Day 5 – Joins</span>
+    </header>
+
+    <!-- Introduction -->
+    <div class="card">
+      <h1>Introduction to SQL Joins</h1>
+      <p>SQL Joins are used to combine data from two or more tables based on a related column between them.</p>
+      <p>Common types of Joins:</p>
+      <ul>
+        <li>INNER JOIN – returns only matching rows from both tables</li>
+        <li>LEFT JOIN – returns all rows from the left table + matching rows from the right</li>
+        <li>RIGHT JOIN – returns all rows from the right table + matching rows from the left</li>
+        <li>FULL JOIN – returns all rows from both tables (matched + unmatched)</li>
+      </ul>
+    </div>
+
+    <!-- INNER JOIN -->
+    <div class="card">
+      <h1>INNER JOIN</h1>
+      <p>Returns rows that have matching values in both tables.</p>
+      <pre>
+SELECT employees.name, departments.dept_name
+FROM employees
+INNER JOIN departments
+ON employees.dept_id = departments.dept_id;
+      </pre>
+      <div class="assignment">Assignment: Get student names with their enrolled course names.</div>
+    </div>
+
+    <!-- LEFT JOIN -->
+    <div class="card">
+      <h1>LEFT JOIN</h1>
+      <p>Returns all rows from the left table, and matching rows from the right table. If no match, NULL is shown.</p>
+      <pre>
+SELECT customers.name, orders.order_id
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.customer_id;
+      </pre>
+      <div class="assignment">Assignment: List all students and their course (show NULL if no course).</div>
+    </div>
+
+    <!-- RIGHT JOIN -->
+    <div class="card">
+      <h1>RIGHT JOIN</h1>
+      <p>Returns all rows from the right table, and matching rows from the left table.</p>
+      <pre>
+SELECT employees.name, departments.dept_name
+FROM employees
+RIGHT JOIN departments
+ON employees.dept_id = departments.dept_id;
+      </pre>
+      <div class="assignment">Assignment: Show all departments and employees (NULL if no employee in department).</div>
+    </div>
+
+    <!-- FULL JOIN -->
+    <div class="card">
+      <h1>FULL JOIN</h1>
+      <p>Returns all rows from both tables, with NULL where no match exists.</p>
+      <pre>
+SELECT students.name, courses.course_name
+FROM students
+FULL JOIN courses
+ON students.course_id = courses.course_id;
+      </pre>
+      <div class="assignment">Assignment: List all students and all courses, matched or not.</div>
+    </div>
+
+    <!-- Practice -->
+    <div class="card">
+      <h1>Practice Questions</h1>
+      <ul>
+        <li>Use INNER JOIN to find employees and their departments.</li>
+        <li>Use LEFT JOIN to show all customers and their orders.</li>
+        <li>Use RIGHT JOIN to list all courses and the students enrolled in them.</li>
+        <li>Use FULL JOIN to show all students and courses (matched + unmatched).</li>
+        <li>Find employees without departments using LEFT JOIN + WHERE dept_name IS NULL.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
