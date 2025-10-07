@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Joins - Left & Right</title>
+  <style>
+    /* Basic Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: #0b1020;
+      color: #e7ecff;
+      padding: 20px;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #6ea8ff;
+      border-bottom: 2px solid #2a3563;
+      padding-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 18px 0 8px;
+      color: #81d4ff;
+    }
+
+    p {
+      margin: 6px 0;
+      line-height: 1.5;
+    }
+
+    .card {
+      background: #121832;
+      border: 1px solid #2a3563;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    pre {
+      background: #0f142b;
+      border: 1px solid #2a3563;
+      padding: 12px 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      color: #a5ffda;
+      margin: 8px 0;
+    }
+
+    ul {
+      margin: 8px 0 12px 20px;
+    }
+
+    .assignment {
+      background: #1b2440;
+      border-left: 4px solid #6ea8ff;
+      padding: 6px 12px;
+      margin: 8px 0 16px;
+      border-radius: 8px;
+      font-style: italic;
+      color: #c8d6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>LEFT JOIN & RIGHT JOIN in SQL</h1>
+
+    <div class="card">
+      <h2>LEFT JOIN</h2>
+      <p>
+        The <b>LEFT JOIN</b> keyword returns all records from the <b>left table</b> (table1),
+        and the matched records from the <b>right table</b> (table2).
+        If there is no match, NULL values are returned from the right side.
+      </p>
+
+      <h3>Syntax:</h3>
+      <pre>
+SELECT columns
+FROM table1
+LEFT JOIN table2
+ON table1.column = table2.column;
+      </pre>
+
+      <h3>Example:</h3>
+      <p>Suppose we have two tables:</p>
+
+      <b>Students Table</b>  
+      <ul>
+        <li>student_id | name</li>
+        <li>1 | Ramesh</li>
+        <li>2 | Suresh</li>
+        <li>3 | Mahesh</li>
+      </ul>
+
+      <b>Marks Table</b>  
+      <ul>
+        <li>student_id | marks</li>
+        <li>1 | 85</li>
+        <li>2 | 90</li>
+      </ul>
+
+      <pre>
+SELECT Students.name, Marks.marks
+FROM Students
+LEFT JOIN Marks
+ON Students.student_id = Marks.student_id;
+      </pre>
+
+      <p><b>Result:</b></p>
+      <ul>
+        <li>Ramesh | 85</li>
+        <li>Suresh | 90</li>
+        <li>Mahesh | NULL</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>RIGHT JOIN</h2>
+      <p>
+        The <b>RIGHT JOIN</b> keyword returns all records from the <b>right table</b> (table2),
+        and the matched records from the <b>left table</b> (table1).
+        If there is no match, NULL values are returned from the left side.
+      </p>
+
+      <h3>Syntax:</h3>
+      <pre>
+SELECT columns
+FROM table1
+RIGHT JOIN table2
+ON table1.column = table2.column;
+      </pre>
+
+      <h3>Example:</h3>
+      <p>Using the same <b>Students</b> and <b>Marks</b> tables:</p>
+
+      <pre>
+SELECT Students.name, Marks.marks
+FROM Students
+RIGHT JOIN Marks
+ON Students.student_id = Marks.student_id;
+      </pre>
+
+      <p><b>Result:</b></p>
+      <ul>
+        <li>Ramesh | 85</li>
+        <li>Suresh | 90</li>
+      </ul>
+    </div>
+
+    <div class="assignment">
+      <b>Practice Questions:</b>
+      <ol>
+        <li>Write a query to get all students and their marks (use LEFT JOIN).</li>
+        <li>Write a query to get all marks records with student names (use RIGHT JOIN).</li>
+        <li>Create your own two tables (Employees & Departments) and try LEFT JOIN & RIGHT JOIN.</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>
