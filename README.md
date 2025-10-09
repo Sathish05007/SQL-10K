@@ -16,4 +16,8 @@ INSERT adds new data into a table. You can insert one row at a time or multiple 
 
 **DAY 7**:- **LEFT&RIGHT JOIN**
 
-**DAT 8**:-**INNEER AND SELF JOINS**
+**DAY 8**:-**INNEER AND SELF JOINS**
+
+**DAY 9**:-**Views & Indexes**
+
+
