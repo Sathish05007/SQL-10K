@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Views, Indexes & Subqueries</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: #0b1020;
+      color: #e7ecff;
+      padding: 20px;
+    }
+    .wrap { max-width: 1100px; margin: auto; padding: 20px; }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #6ea8ff;
+      border-bottom: 2px solid #2a3563;
+      padding-bottom: 6px;
+    }
+    h2 { font-size: 22px; margin: 18px 0 8px; color: #81d4ff; }
+    p { margin: 6px 0; line-height: 1.5; }
+    .card {
+      background: #121832; border: 1px solid #2a3563;
+      border-radius: 16px; padding: 24px; margin: 24px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.7); }
+    pre {
+      background: #0f142b; border: 1px solid #2a3563;
+      padding: 12px 16px; border-radius: 12px;
+      overflow-x: auto; font-family: 'Fira Code', monospace;
+      color: #a5ffda; margin: 8px 0;
+    }
+    ul, ol { margin: 8px 0 12px 20px; }
+    .assignment {
+      background: #1b2440; border-left: 4px solid #6ea8ff;
+      padding: 6px 12px; margin: 8px 0 16px;
+      border-radius: 8px; font-style: italic; color: #c8d6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Views, Indexes & Subqueries</h1>
+
+    <!-- VIEWS -->
+    <div class="card">
+      <h2>Views</h2>
+      <p>
+        A <b>View</b> is a virtual table based on the result of an SQL query.  
+        It stores no data itself but retrieves it dynamically from base tables.
+      </p>
+
+      <h3>Syntax:</h3>
+      <pre>
+CREATE VIEW view_name AS
+SELECT column1, column2
+FROM table_name
+WHERE condition;
+      </pre>
+
+      <h3>Example:</h3>
+      <pre>
+CREATE VIEW HighScorers AS
+SELECT name, marks
+FROM Students
+WHERE marks > 80;
+
+SELECT * FROM HighScorers;
+      </pre>
+    </div>
+
+    <!-- INDEXES -->
+    <div class="card">
+      <h2>Indexes</h2>
+      <p>
+        An <b>Index</b> improves query performance by making lookups faster,  
+        similar to an index in a book.
+      </p>
+
+      <h3>Syntax:</h3>
+      <pre>
+CREATE INDEX index_name
+ON table_name (column_name);
+      </pre>
+
+      <h3>Example:</h3>
+      <pre>
+CREATE INDEX idx_student_name
+ON Students(name);
+      </pre>
+    </div>
+
+    <!-- SUBQUERIES -->
+    <div class="card">
+      <h2>Subqueries</h2>
+      <p>
+        A <b>Subquery</b> is a query nested inside another query.  
+        It is used to perform operations that require results from another query.
+      </p>
+
+      <h3>Types of Subqueries:</h3>
+      <ul>
+        <li><b>Single-row Subquery</b> – returns only one row.</li>
+        <li><b>Multi-row Subquery</b> – returns multiple rows.</li>
+        <li><b>Nested Subquery</b> – subquery inside another subquery.</li>
+      </ul>
+
+      <h3>Syntax:</h3>
+      <pre>
+SELECT column
+FROM table
+WHERE column operator (SELECT column FROM table WHERE condition);
+      </pre>
+
+      <h3>Examples:</h3>
+      <pre>
+-- Find students with marks greater than the average
+SELECT name, marks
+FROM Students
+WHERE marks > (SELECT AVG(marks) FROM Students);
+
+-- Find employees earning more than employee 'Rahul'
+SELECT emp_name, salary
+FROM Employees
+WHERE salary > (SELECT salary FROM Employees WHERE emp_name = 'Rahul');
+      </pre>
+    </div>
+
+    <!-- PRACTICE -->
+    <div class="assignment">
+      <b>Practice Questions:</b>
+      <ol>
+        <li>Create a VIEW that shows employees from the IT department only.</li>
+        <li>Create an INDEX on the "email" column of a Users table.</li>
+        <li>Write a subquery to find the product(s) with the maximum price.</li>
+        <li>Find all students whose marks are greater than the average marks (use subquery).</li>
+        <li>Find employees whose salary is higher than that of 'Suresh'.</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Self Join, Views & Indexes</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: #0b1020;
+      color: #e7ecff;
+      padding: 20px;
+    }
+    .wrap { max-width: 1100px; margin: auto; padding: 20px; }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #6ea8ff;
+      border-bottom: 2px solid #2a3563;
+      padding-bottom: 6px;
+    }
+    h2 { font-size: 22px; margin: 18px 0 8px; color: #81d4ff; }
+    p { margin: 6px 0; line-height: 1.5; }
+    .card {
+      background: #121832; border: 1px solid #2a3563;
+      border-radius: 16px; padding: 24px; margin: 24px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.7); }
+    pre {
+      background: #0f142b; border: 1px solid #2a3563;
+      padding: 12px 16px; border-radius: 12px;
+      overflow-x: auto; font-family: 'Fira Code', monospace;
+      color: #a5ffda; margin: 8px 0;
+    }
+    ul { margin: 8px 0 12px 20px; }
+    .assignment {
+      background: #1b2440; border-left: 4px solid #6ea8ff;
+      padding: 6px 12px; margin: 8px 0 16px;
+      border-radius: 8px; font-style: italic; color: #c8d6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>SELF JOIN, VIEWS & INDEXES</h1>
+
+    <!-- SELF JOIN -->
+    <div class="card">
+      <h2>SELF JOIN</h2>
+      <p>
+        A <b>SELF JOIN</b> is a join of a table with itself.  
+        It is useful when you want to compare rows within the same table.
+      </p>
+
+      <h3>Syntax:</h3>
+      <pre>
+SELECT a.column_name, b.column_name
+FROM table_name a, table_name b
+WHERE condition;
+      </pre>
+
+      <h3>Example:</h3>
+      <p>Consider an <b>Employees</b> table:</p>
+      <ul>
+        <li>emp_id | emp_name | manager_id</li>
+        <li>1 | Ramesh | NULL</li>
+        <li>2 | Suresh | 1</li>
+        <li>3 | Mahesh | 1</li>
+        <li>4 | Naresh | 2</li>
+      </ul>
+
+      <pre>
+SELECT e1.emp_name AS Employee, e2.emp_name AS Manager
+FROM Employees e1
+LEFT JOIN Employees e2
+ON e1.manager_id = e2.emp_id;
+      </pre>
+
+      <p><b>Result:</b></p>
+      <ul>
+        <li>Ramesh | NULL</li>
+        <li>Suresh | Ramesh</li>
+        <li>Mahesh | Ramesh</li>
+        <li>Naresh | Suresh</li>
+      </ul>
+    </div>
+
+    <!-- VIEWS -->
+    <div class="card">
+      <h2>VIEWS</h2>
+      <p>
+        A <b>View</b> is a virtual table based on the result of an SQL query.  
+        It does not store data itself but fetches data dynamically from the base tables.
+      </p>
+
+      <h3>Syntax:</h3>
+      <pre>
+CREATE VIEW view_name AS
+SELECT column1, column2
+FROM table_name
+WHERE condition;
+      </pre>
+
+      <h3>Example:</h3>
+      <pre>
+CREATE VIEW HighScorers AS
+SELECT name, marks
+FROM Students
+WHERE marks > 80;
+
+SELECT * FROM HighScorers;
+      </pre>
+    </div>
+
+    <!-- INDEXES -->
+    <div class="card">
+      <h2>INDEXES</h2>
+      <p>
+        An <b>Index</b> in SQL improves the speed of data retrieval operations.  
+        It works like the index of a book, allowing faster lookups.
+      </p>
+
+      <h3>Syntax:</h3>
+      <pre>
+CREATE INDEX index_name
+ON table_name (column_name);
+      </pre>
+
+      <h3>Example:</h3>
+      <pre>
+CREATE INDEX idx_student_name
+ON Students(name);
+      </pre>
+
+      <p>This will make searching by <b>student name</b> faster.</p>
+    </div>
+
+    <!-- PRACTICE -->
+    <div class="assignment">
+      <b>Practice Questions:</b>
+      <ol>
+        <li>Write a query using SELF JOIN to find employees and their managers.</li>
+        <li>Create a VIEW that shows all students with marks greater than 75.</li>
+        <li>Create an INDEX on the <code>email</code> column of a Users table.</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>
