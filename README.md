@@ -20,4 +20,4 @@ INSERT adds new data into a table. You can insert one row at a time or multiple 
 
 **DAY 9**:-**Views & Indexes**
 
-
+**DAY 10**:- **Subqueries**
