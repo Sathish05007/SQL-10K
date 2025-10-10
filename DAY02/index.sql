@@ -53,3 +53,7 @@ DROP TABLE Departments;
 
 -- 11. Delete the entire Company database
 DROP DATABASE Company;
+
+
+
+

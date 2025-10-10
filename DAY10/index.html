@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Subqueries</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: #0b1020;
+      color: #e7ecff;
+      padding: 20px;
+    }
+    .wrap { max-width: 1100px; margin: auto; padding: 20px; }
+    h1 {
+      font-size: 28px; margin-bottom: 12px;
+      color: #6ea8ff; border-bottom: 2px solid #2a3563;
+      padding-bottom: 6px;
+    }
+    h2 { font-size: 22px; margin: 18px 0 8px; color: #81d4ff; }
+    p { margin: 6px 0; line-height: 1.5; }
+    .card {
+      background: #121832; border: 1px solid #2a3563;
+      border-radius: 16px; padding: 24px; margin: 24px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.7); }
+    pre {
+      background: #0f142b; border: 1px solid #2a3563;
+      padding: 12px 16px; border-radius: 12px;
+      overflow-x: auto; font-family: 'Fira Code', monospace;
+      color: #a5ffda; margin: 8px 0;
+    }
+    ul, ol { margin: 8px 0 12px 20px; }
+    .assignment {
+      background: #1b2440; border-left: 4px solid #6ea8ff;
+      padding: 6px 12px; margin: 8px 0 16px;
+      border-radius: 8px; font-style: italic; color: #c8d6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>SQL Subqueries</h1>
+
+    <!-- Intro -->
+    <div class="card">
+      <h2>What is a Subquery?</h2>
+      <p>
+        A <b>Subquery</b> (or inner query) is a query inside another SQL query.  
+        It is used to fetch results that are then used by the main query.
+      </p>
+    </div>
+
+    <!-- Syntax -->
+    <div class="card">
+      <h2>Syntax</h2>
+      <pre>
+SELECT column_name
+FROM table
+WHERE column operator (SELECT column FROM table WHERE condition);
+      </pre>
+    </div>
+
+    <!-- Types -->
+    <div class="card">
+      <h2>Types of Subqueries</h2>
+      <ul>
+        <li><b>Single-row Subquery</b> → returns only one row.</li>
+        <li><b>Multi-row Subquery</b> → returns multiple rows.</li>
+        <li><b>Nested Subquery</b> → subquery inside another subquery.</li>
+        <li><b>Correlated Subquery</b> → subquery that depends on outer query values.</li>
+      </ul>
+    </div>
+
+    <!-- Examples -->
+    <div class="card">
+      <h2>Examples</h2>
+      <pre>
+-- Example 1: Students scoring above average
+SELECT name, marks
+FROM Students
+WHERE marks > (SELECT AVG(marks) FROM Students);
+
+-- Example 2: Employees earning more than 'Rahul'
+SELECT emp_name, salary
+FROM Employees
+WHERE salary > (SELECT salary FROM Employees WHERE emp_name = 'Rahul');
+
+-- Example 3: Products with max price
+SELECT product_name, price
+FROM Products
+WHERE price = (SELECT MAX(price) FROM Products);
+      </pre>
+    </div>
+
+    <!-- Practice -->
+    <div class="card">
+      <h2>Practice Questions</h2>
+      <ol>
+        <li>Find all students with marks greater than the average.</li>
+        <li>Find employees earning more than the salary of employee 'Suresh'.</li>
+        <li>Find the product(s) with the highest price.</li>
+        <li>List customers whose orders are above the average order amount.</li>
+        <li>Find employees who earn more than the minimum salary of their department.</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>
